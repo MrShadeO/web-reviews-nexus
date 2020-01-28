@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+nav {
+    width: 100%;
+    top: 0;
+    margin: 0;
+    position: fixed;
+    display: inline-block;
+    background-color: lightgray;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+h1, .about h2 {
+    text-align: center;
+}
+
+.welcome-message, .about {
+    background-color: lightgray;
+    padding: 0;
+}
+
+.welcome-message {
+    margin: 33% 10px 10px 10px;
+}
+
+.about {
+    margin: 0 10px 0 10px;
+}
+
+.welcome-message p {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.media-options, .search-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.movies-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.search-button {
+    margin-left: 5px;
+}
+
+

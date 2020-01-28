@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Reviews Nexus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <h1 class="title">Web Reviews Nexus</h1>
+
+        <form class="search-form js-search-form">
+            <fieldset>
+                <div class="media-options js-media-options">
+                    <button class="books-button js-books-button">Books</button>
+                    <button class="movies-button js-movies-button">Movies</button>
+                    <button class="tv-button js-tv-button">TV</button>
+                </div>
+                <div class="search-field">
+                    <label for="media-search"></label>
+                    <input class="media-search js-media-search" type="text" name="media-search" placeholder="Book, movie, or tv show title" required>
+                    <label for="search-button"></label>
+                    <input class="search-button js-search-button" type="submit" name="search-button" value="Search">
+                </div>
+            </fieldset>
+        </form>
+    </nav>
+
+    <div class="welcome-message">
+        <p>Welcome to the Web Reviews Nexus! Have you ever heard of a famous media title, such as The Lord of the Rings, and wondered if you'd rather read the books or watch the movies? Then you will find the Nexus to be a useful tool! Search media titles (including books, movies, and tv shows) and find and compare reviews for each media type associated with the title.</p>
+    </div>
+
+    <div class="about">
+        <h2>About the Nexus</h2>
+        <div class="credits">
+            <p>This app is powered by goodreads for book searches and The Movie DB for movie and tv searches. Links to their full websites can be found below.</p>
+            <p>goodreads: <a href="https://www.goodreads.com/">https://www.goodreads.com/</a></p>
+            <p>The Movie DB: <a href="https://www.themoviedb.org/">https://www.themoviedb.org/</a></p>
+        </div>
+    </div>
+
+    <div class="results hidden"></div>
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>
