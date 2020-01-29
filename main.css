@@ -21,13 +21,20 @@ nav {
     background-color: lightgray;
 }
 
-h1 {
+h1, h2 {
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
-h1, .about h2 {
-    text-align: center;
+/*
+.books-button, .movies-button, .tv-button {
+    background-color: white;
+}
+*/
+
+.highlight {
+    background-color: white;
 }
 
 .welcome-message, .about {
@@ -36,11 +43,11 @@ h1, .about h2 {
 }
 
 .welcome-message {
-    margin: 33% 10px 10px 10px;
+    margin: 39% 10px 10px 10px;
 }
 
 .about {
-    margin: 0 10px 0 10px;
+    margin: 10px 10px 0 10px;
 }
 
 .welcome-message p {
