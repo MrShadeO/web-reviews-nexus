@@ -21,7 +21,7 @@ nav {
     background-color: lightgray;
 }
 
-h1, h2 {
+h1, h2, h3 {
     padding: 0;
     margin: 0;
     text-align: center;
@@ -37,16 +37,15 @@ h1, h2 {
     background-color: white;
 }
 
-.welcome-message, .about {
-    background-color: lightgray;
+.welcome-message, .about, .books-search-results, .movies-search-results, .tv-search-results  {
     padding: 0;
 }
 
-.welcome-message {
+.welcome-message, .results {
     margin: 39% 10px 10px 10px;
 }
 
-.about {
+.about, .books-search-results, .movies-search-results, .tv-search-results {
     margin: 10px 10px 0 10px;
 }
 
@@ -61,7 +60,7 @@ fieldset {
     padding: 0;
 }
 
-.media-options, .search-field {
+.media-options, .search-field, .results-media-options {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -69,13 +68,24 @@ fieldset {
     margin: 0 0 10px 0;
 }
 
-.movies-button {
+.movies-button, .results-movies-button {
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .search-button {
     margin-left: 5px;
+}
+
+.scores {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.scores * {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 

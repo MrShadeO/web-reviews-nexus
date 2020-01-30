@@ -29,11 +29,11 @@
         </form>
     </nav>
 
-    <div class="welcome-message">
+    <div class="welcome-message js-welcome-message">
         <p>Welcome to the Web Reviews Nexus! Have you ever heard of a famous media title, such as The Lord of the Rings, and wondered if you'd rather read the books or watch the movies? Then you will find the Nexus to be a useful tool! Search media titles (including books, movies, and tv shows) and compare reviews for each media type associated with the title.</p>
     </div>
 
-    <div class="about">
+    <div class="about js-about">
         <h2>About the Nexus</h2>
         <div class="credits">
             <p>This app is powered by goodreads for book searches and The Movie DB for movie and tv searches. Links to their full websites can be found below.</p>
@@ -42,7 +42,21 @@
         </div>
     </div>
 
-    <div class="results hidden"></div>
+    <div class="results js-results hidden">
+        <div class="results-media-options js-results-media-options">
+            <button class="results-books-button js-results-books-button">Books</button>
+            <button class="results-movies-button js-results-movies-button">Movies</button>
+            <button class="results-tv-button js-results-tv-button">TV</button>
+        </div>
+        <div class="scores js-scores">
+            <p class="book-score js-book-score hidden"></p>
+            <p class="movie-score js-movie-score hidden"></p>
+            <p class="tv-score js-tv-score hidden"></p>
+        </div>
+        <div class="books-search-results js-books-search-results hidden"></div>
+        <div class="movies-search-results js-movies-search-results hidden"></div>
+        <div class="tv-search-results js-tv-search-results hidden"></div>
+    </div>
 
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
