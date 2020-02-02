@@ -27,12 +27,6 @@ h1, h2, h3 {
     text-align: center;
 }
 
-/*
-.books-button, .movies-button, .tv-button {
-    background-color: white;
-}
-*/
-
 .highlight {
     background-color: white;
 }
@@ -88,4 +82,76 @@ fieldset {
     padding-right: 5px;
 }
 
+.left-right-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+}
 
+.left-right-buttons p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+@media screen and (min-width:375px) {
+    .welcome-message, .results {
+        margin: 34% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:414px) {
+    .welcome-message, .results {
+        margin: 31% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:500px) {
+    .welcome-message, .results {
+        margin: 26% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:750px) {
+    .welcome-message, .results {
+        margin: 17% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:1000px) {
+    .welcome-message, .results {
+        margin: 13% 10px 10px 10px;
+    }
+
+    .search-results {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 0px;
+    }
+
+    .books-search-results, .movies-search-results, .tv-search-results {
+        flex: 1 1 0px;
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .welcome-message, .results {
+        margin: 10% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:1600px) {
+    .welcome-message, .results {
+        margin: 8% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .welcome-message, .results {
+        margin: 7% 10px 10px 10px;
+    }
+}
