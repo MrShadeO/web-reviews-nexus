@@ -6,6 +6,10 @@ const tmdbApiKey = 'e24f5fb816587d13d8ea52ce58236e76';
 const tmdbMovieSearchURL = 'https://api.themoviedb.org/3/search/movie?';
 const tmdbTvSearchURL = 'https://api.themoviedb.org/3/search/tv?';
 
+/*
+The following variables are used to store info from a search's results. List arrays hold every item found in a search and the Item variables
+are the current positions in the relevant arrays. 
+*/
 let bookItem = 0;
 let bookList = [];
 let movieItem = 0;
@@ -13,6 +17,10 @@ let movieList = [];
 let tvItem = 0;
 let tvList = [];
 
+/*
+Takes the TV list and the current position in the books list to display relevant search info. Ensures that info is displayed when user clicks a 
+media button after a search has been performed.
+*/
 function displayTvShow() {
     if ($('.js-results-tv-button').hasClass('highlight')) {
         $('.js-tv-score').removeClass('hidden');
@@ -36,6 +44,10 @@ function displayTvShow() {
     )
 }
 
+/*
+Takes the movies list and the current position in the movies list to display relevant search info. Ensures that info is displayed when user clicks a 
+media button after a search has been performed.
+*/
 function displayMovie() {
     if ($('.js-results-movies-button').hasClass('highlight')) {
         $('.js-movie-score').removeClass('hidden');
@@ -59,6 +71,10 @@ function displayMovie() {
     )
 }
 
+/*
+Takes the books list and the current position in the books list to display relevant search info. Ensures that info is displayed when user clicks a 
+media button after a search has been performed.
+*/
 function displayBook() {
     if ($('.js-results-books-button').hasClass('highlight')) {
         $('.js-book-score').removeClass('hidden');
@@ -82,6 +98,10 @@ function displayBook() {
     )
 }
 
+/*
+Takes the response data from the TMDB TV show database and parses through to find the relevant info and put it in a smaller array that will be used by
+all subsequent functions.
+*/
 function parseTvResults(responseData) {
     console.log(responseData);
 
@@ -96,6 +116,10 @@ function parseTvResults(responseData) {
     displayTvShow();
 }
 
+/*
+Takes the response data from the TMDB movie database and parses through to find the relevant info and put it in a smaller array that will be used by
+all subsequent functions.
+*/
 function parseMovieResults(responseData) {
     console.log(responseData);
 
@@ -110,6 +134,10 @@ function parseMovieResults(responseData) {
     displayMovie();
 }
 
+/*
+Takes the response data from the Google Books database and parses through to find the relevant info and put it in a smaller array that will be used by
+all subsequent functions.
+*/
 function parseBookResults(responseData) {
     console.log(responseData);
 
@@ -133,12 +161,15 @@ function parseBookResults(responseData) {
     displayBook();
 }
 
+//Encodes parameters to be used in the search URL.
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
 }
 
+
+//This function takes the users query and developer's API keys to create parameters, edit URLs, and perform a search to the Google Books and TMDB databases.
 function searchResults(mediaSearch) {
     const googleBooksParams = {
         q: mediaSearch,
@@ -206,6 +237,7 @@ function searchResults(mediaSearch) {
 
 }
 
+//Toggle functions are needed for the media buttons to be turned on and off.
 function toggleHidden(toHide) {
     toHide.toggleClass('hidden');
 }
@@ -214,6 +246,10 @@ function toggleHighlight(button) {
     button.toggleClass('highlight');
 }
 
+/*
+When a new search occurs, the selected media buttons will remain selected for the current search once it loads.
+Example: If someone searches a title and has the movie button selected, then when the search results are loaded, the current search movie button will also appear selected.
+*/
 function copyHighlights() {
     if($('.js-movies-button').hasClass('highlight')) {
         $('.js-results-movies-button').addClass('highlight');
@@ -226,6 +262,10 @@ function copyHighlights() {
     }
 }
 
+/*
+This function hides the homepage info, causes all results to be hidden, and resets variables for all search lists and the positions in each list. Another function ensures that 
+if the media buttons are selected during a search, then the results will be revealed again.
+*/
 function clearScreen() {
     $('.js-welcome-message').addClass('hidden');
     $('.js-about').addClass('hidden');
@@ -257,6 +297,10 @@ function clearScreen() {
     tvList = [];
 }
 
+/*
+Toggles between whether or not TV shows will be displayed at all. Buttons near search bar determine what will be initially displayed when a new search occurs. Buttons above
+the search results determine what will be displayed for the current search.
+*/
 function watchTvButtons() {
     $('.js-tv-button').click(event => {
         event.preventDefault();
@@ -270,6 +314,7 @@ function watchTvButtons() {
     })
 }
 
+//Changes which TV show will be viewed by moving backwards through the TV array.
 function watchTvPrevButton() {
     $('.js-tv-search-results').on('click', '.js-tv-prev-button', event => {
         event.preventDefault();
@@ -283,6 +328,7 @@ function watchTvPrevButton() {
     })
 }
 
+//Changes which TV show will be viewed by moving forward through the TV array.
 function watchTvNextButton() {
     $('.js-tv-search-results').on('click', '.js-tv-next-button', event => {
         event.preventDefault();
@@ -296,6 +342,10 @@ function watchTvNextButton() {
     })
 }
 
+/*
+Toggles between whether or not movies will be displayed at all. Buttons near search bar determine what will be initially displayed when a new search occurs. Buttons above
+the search results determine what will be displayed for the current search.
+*/
 function watchMoviesButtons() {
     $('.js-movies-button').click(event => {
         event.preventDefault();
@@ -309,6 +359,7 @@ function watchMoviesButtons() {
     })
 }
 
+//Changes which movie will be viewed by moving backwards through the movies array.
 function watchMoviePrevButton() {
     $('.js-movies-search-results').on('click', '.js-movie-prev-button', event => {
         event.preventDefault();
@@ -322,6 +373,7 @@ function watchMoviePrevButton() {
     })
 }
 
+//Changes which movie will be viewed by moving forward through the movies array.
 function watchMovieNextButton() {
     $('.js-movies-search-results').on('click', '.js-movie-next-button', event => {
         event.preventDefault();
@@ -335,6 +387,10 @@ function watchMovieNextButton() {
     })
 }
 
+/*
+Toggles between whether or not books will be displayed at all. Buttons near search bar determine what will be initially displayed when a new search occurs. Buttons above
+the search results determine what will be displayed for the current search.
+*/
 function watchBooksButton() {
     $('.js-books-button').click(event => {
         event.preventDefault();
@@ -348,6 +404,7 @@ function watchBooksButton() {
     })
 }
 
+//Changes which book will be viewed by moving backwards through the books array.
 function watchBookPrevButton() {
     $('.js-books-search-results').on('click', '.js-book-prev-button', event => {
         event.preventDefault();
@@ -361,6 +418,7 @@ function watchBookPrevButton() {
     })
 }
 
+//Changes which book will be viewed by moving forward through the books array.
 function watchBookNextButton() {
     $('.js-books-search-results').on('click', '.js-book-next-button', event => {
         event.preventDefault();
@@ -374,6 +432,7 @@ function watchBookNextButton() {
     })
 }
 
+//Waits for use to his submit button, then begins search process
 function watchForm() {
     $('.js-search-form').submit(event => {
       event.preventDefault();
@@ -384,6 +443,7 @@ function watchForm() {
     });
 }
 
+//Creates event listeners for buttons
 function initializeApp() {
     watchForm();
     watchBooksButton();
