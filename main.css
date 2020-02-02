@@ -118,13 +118,18 @@ fieldset {
 
 @media screen and (min-width:750px) {
     .welcome-message, .results {
-        margin: 17% 10px 10px 10px;
+        margin: 17% 50px 10px 50px;
+    }
+
+    .about {
+        margin-left: 50px;
+        margin-right: 50px;
     }
 }
 
 @media screen and (min-width:1000px) {
     .welcome-message, .results {
-        margin: 13% 10px 10px 10px;
+        margin: 13% 50px 10px 50px;
     }
 
     .search-results {
@@ -140,18 +145,23 @@ fieldset {
 
 @media screen and (min-width:1280px) {
     .welcome-message, .results {
-        margin: 10% 10px 10px 10px;
+        margin: 10% 75px 10px 75px;
+    }
+
+    .about {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @media screen and (min-width:1600px) {
     .welcome-message, .results {
-        margin: 8% 10px 10px 10px;
+        margin: 8% 75px 10px 75px;
     }
 }
 
 @media screen and (min-width:1920px) {
     .welcome-message, .results {
-        margin: 7% 10px 10px 10px;
+        margin: 7% 100px 10px 100px;
     }
 }
