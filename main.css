@@ -19,6 +19,7 @@ nav {
     position: fixed;
     display: inline-block;
     background-color: lightgray;
+    background: linear-gradient(to right, lightpink, lightskyblue, goldenrod);
 }
 
 h1, h2, h3 {
@@ -47,6 +48,18 @@ h1, h2, h3 {
     margin: 0 10px 0 10px;
 }
 
+.books-search-results {
+    border-top: 3px solid lightpink;
+}
+
+.movies-search-results {
+    border-top: 3px solid lightskyblue;
+}
+
+.tv-search-results {
+    border-top: 3px solid goldenrod;
+}
+
 .welcome-message p {
     margin: 0;
     padding: 0;
@@ -66,7 +79,7 @@ fieldset {
     margin: 0 0 10px 0;
 }
 
-.movies-button, .results-movies-button {
+.results-movies-button {
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -103,8 +116,14 @@ fieldset {
     margin-right: 3%;
 }
 
+.homepage-image {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 button {
     border-radius: 4px;
+    font-weight: bold;
 }
 
 input[type=submit] {
@@ -116,6 +135,10 @@ input[type=submit] {
     margin: 20px 0 0 0;
 }
 
+.results-books-button, .results-movies-button, .results-tv-button {
+    width: 70px;
+}
+
 .highlight.results-books-button, .book-next-button, .book-prev-button {
     background-color: lightpink;
 }
@@ -125,7 +148,25 @@ input[type=submit] {
 }
 
 .highlight.results-tv-button, .tv-next-button, .tv-prev-button  {
-    background-color: lightyellow;
+    background-color: goldenrod;
+}
+
+.image-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.powered-by-img {
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 0 10px;
+}
+
+.make-bold {
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
 @media screen and (min-width:375px) {
@@ -155,6 +196,10 @@ input[type=submit] {
         margin-left: 50px;
         margin-right: 50px;
     }
+
+    .powered-by-img {
+        margin: 0 20px 0 20px;
+    }
 }
 
 @media screen and (min-width:1000px) {
@@ -171,6 +216,7 @@ input[type=submit] {
     .books-search-results, .movies-search-results, .tv-search-results {
         flex: 1 1 0px;
     }
+
 }
 
 @media screen and (min-width:1280px) {

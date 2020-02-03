@@ -26,9 +26,9 @@ function displayTvShow() {
         $('.js-tv-search-results').removeClass('hidden');
     }
     if (tvList[tvItem].score == 0) {
-        $('.js-tv-score').append(`TV: N/A`)
+        $('.js-tv-score').append(`<span class="make-bold">TV:</span> N/A`)
     } else {
-        $('.js-tv-score').append(`TV: ${tvList[tvItem].score}/10`)
+        $('.js-tv-score').append(`<span class="make-bold">TV:</span> ${tvList[tvItem].score}/10`)
     }
     $('.js-tv-search-results').append(
         `<h3>TV Shows</h3>
@@ -38,8 +38,8 @@ function displayTvShow() {
             <button class="tv-next-button js-tv-next-button">Next</button>
         </div>
         <h4>${tvList[tvItem].title}</h4>
-        <p>Average Score: ${tvList[tvItem].score}/10</p>
-        <p>Summary: ${tvList[tvItem].summary}</p>`
+        <p><span class="make-bold">Average Score:</span> ${tvList[tvItem].score}/10</p>
+        <p><span class="make-bold">Summary:</span> ${tvList[tvItem].summary}</p>`
     )
 }
 
@@ -53,9 +53,9 @@ function displayMovie() {
         $('.js-movies-search-results').removeClass('hidden');
     }
     if (movieList[movieItem].score == 0) {
-        $('.js-movie-score').append(`Movie: N/A`)
+        $('.js-movie-score').append(`<span class="make-bold">Movie:</span> N/A`)
     } else {
-        $('.js-movie-score').append(`Movie: ${movieList[movieItem].score}/10`)
+        $('.js-movie-score').append(`<span class="make-bold">Movie:</span> ${movieList[movieItem].score}/10`)
     }
     $('.js-movies-search-results').append(
         `<h3>Movies</h3>
@@ -65,8 +65,8 @@ function displayMovie() {
             <button class="movie-next-button js-movie-next-button">Next</button>
         </div>
         <h4>${movieList[movieItem].title}</h4>
-        <p>Average Score: ${movieList[movieItem].score}/10</p>
-        <p>Summary: ${movieList[movieItem].summary}</p>`
+        <p><span class="make-bold">Average Score:</span> ${movieList[movieItem].score}/10</p>
+        <p><span class="make-bold">Summary:</span> ${movieList[movieItem].summary}</p>`
     )
 }
 
@@ -80,9 +80,9 @@ function displayBook() {
         $('.js-books-search-results').removeClass('hidden');
     }
     if (bookList[bookItem].score == 0) {
-        $('.js-book-score').append(`Book: N/A`)
+        $('.js-book-score').append(`<span class="make-bold">Book:</span> N/A`)
     } else {
-        $('.js-book-score').append(`Book: ${bookList[bookItem].score}/10`)
+        $('.js-book-score').append(`<span class="make-bold">Book:</span> ${bookList[bookItem].score}/10`)
     }
     $('.js-books-search-results').append(
         `<h3>Books</h3>
@@ -92,8 +92,8 @@ function displayBook() {
             <button class="book-next-button js-book-next-button">Next</button>
         </div>
         <h4>${bookList[bookItem].title}</h4>
-        <p>Average Score: ${bookList[bookItem].score}/10</p>
-        <p>Summary: ${bookList[bookItem].summary}</p>`
+        <p><span class="make-bold">Average Score:</span> ${bookList[bookItem].score}/10</p>
+        <p><span class="make-bold">Summary:</span> ${bookList[bookItem].summary}</p>`
     )
 }
 
@@ -251,6 +251,7 @@ if the media buttons are selected during a search, then the results will be reve
 function clearScreen() {
     $('.js-welcome-message').addClass('hidden');
     $('.js-about').addClass('hidden');
+    $('.homepage-image').addClass('hidden');
 
     $('.js-book-score').addClass('hidden');
     $('.js-movie-score').addClass('hidden');
