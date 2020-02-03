@@ -36,11 +36,15 @@ h1, h2, h3 {
 }
 
 .welcome-message, .results {
-    margin: 39% 10px 10px 10px;
+    margin: 30% 10px 10px 10px;
 }
 
-.about, .books-search-results, .movies-search-results, .tv-search-results {
+.about {
     margin: 10px 10px 0 10px;
+}
+
+.books-search-results, .movies-search-results, .tv-search-results {
+    margin: 0 10px 0 10px;
 }
 
 .welcome-message p {
@@ -78,6 +82,7 @@ fieldset {
 }
 
 .scores * {
+    margin: 3px 0 20px 0;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -98,27 +103,52 @@ fieldset {
     margin-right: 3%;
 }
 
+button {
+    border-radius: 4px;
+}
+
+input[type=submit] {
+    border-radius: 0px;
+}
+
+.scores-title {
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.highlight.results-books-button, .book-next-button, .book-prev-button {
+    background-color: lightpink;
+}
+
+.highlight.results-movies-button, .movie-next-button, .movie-prev-button  {
+    background-color: lightskyblue;
+}
+
+.highlight.results-tv-button, .tv-next-button, .tv-prev-button  {
+    background-color: lightgreen;
+}
+
 @media screen and (min-width:375px) {
-    .welcome-message, .results {
-        margin: 34% 10px 10px 10px;
-    }
-}
-
-@media screen and (min-width:414px) {
-    .welcome-message, .results {
-        margin: 31% 10px 10px 10px;
-    }
-}
-
-@media screen and (min-width:500px) {
     .welcome-message, .results {
         margin: 26% 10px 10px 10px;
     }
 }
 
+@media screen and (min-width:414px) {
+    .welcome-message, .results {
+        margin: 23% 10px 10px 10px;
+    }
+}
+
+@media screen and (min-width:500px) {
+    .welcome-message, .results {
+        margin: 20% 10px 10px 10px;
+    }
+}
+
 @media screen and (min-width:750px) {
     .welcome-message, .results {
-        margin: 17% 50px 10px 50px;
+        margin: 13% 50px 10px 50px;
     }
 
     .about {
@@ -129,7 +159,7 @@ fieldset {
 
 @media screen and (min-width:1000px) {
     .welcome-message, .results {
-        margin: 13% 50px 10px 50px;
+        margin: 10% 50px 10px 50px;
     }
 
     .search-results {
@@ -145,7 +175,7 @@ fieldset {
 
 @media screen and (min-width:1280px) {
     .welcome-message, .results {
-        margin: 10% 75px 10px 75px;
+        margin: 8% 75px 10px 75px;
     }
 
     .about {
@@ -156,12 +186,12 @@ fieldset {
 
 @media screen and (min-width:1600px) {
     .welcome-message, .results {
-        margin: 8% 75px 10px 75px;
+        margin: 6% 75px 10px 75px;
     }
 }
 
 @media screen and (min-width:1920px) {
     .welcome-message, .results {
-        margin: 7% 100px 10px 100px;
+        margin: 5% 100px 10px 100px;
     }
 }

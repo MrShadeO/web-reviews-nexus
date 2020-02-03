@@ -1,6 +1,5 @@
 'use strict';
 
-const googleApi = 'AIzaSyDS2P4D4oFIhyLgHO-b-yWwAnAUUFlVgoI';
 const googleURL = 'https://www.googleapis.com/books/v1/volumes?';
 const tmdbApiKey = 'e24f5fb816587d13d8ea52ce58236e76';
 const tmdbMovieSearchURL = 'https://api.themoviedb.org/3/search/movie?';
@@ -168,7 +167,6 @@ function formatQueryParams(params) {
     return queryItems.join('&');
 }
 
-
 //This function takes the users query and developer's API keys to create parameters, edit URLs, and perform a search to the Google Books and TMDB databases.
 function searchResults(mediaSearch) {
     const googleBooksParams = {
@@ -247,22 +245,6 @@ function toggleHighlight(button) {
 }
 
 /*
-When a new search occurs, the selected media buttons will remain selected for the current search once it loads.
-Example: If someone searches a title and has the movie button selected, then when the search results are loaded, the current search movie button will also appear selected.
-*/
-function copyHighlights() {
-    if($('.js-movies-button').hasClass('highlight')) {
-        $('.js-results-movies-button').addClass('highlight');
-    }
-    if($('.js-tv-button').hasClass('highlight')) {
-        $('.js-results-tv-button').addClass('highlight');
-    }
-    if($('.js-books-button').hasClass('highlight')) {
-        $('.js-results-books-button').addClass('highlight');
-    }
-}
-
-/*
 This function hides the homepage info, causes all results to be hidden, and resets variables for all search lists and the positions in each list. Another function ensures that 
 if the media buttons are selected during a search, then the results will be revealed again.
 */
@@ -285,9 +267,9 @@ function clearScreen() {
     $('.js-tv-search-results').empty();
 
     $('.js-results').removeClass('hidden');
-    $('.js-results-tv-button').removeClass('highlight');
-    $('.js-results-movies-button').removeClass('highlight');
-    $('.js-results-books-button').removeClass('highlight');
+    $('.js-results-tv-button').addClass('highlight');
+    $('.js-results-movies-button').addClass('highlight');
+    $('.js-results-books-button').addClass('highlight');
 
     bookItem = 0;
     bookList = [];
@@ -301,11 +283,7 @@ function clearScreen() {
 Toggles between whether or not TV shows will be displayed at all. Buttons near search bar determine what will be initially displayed when a new search occurs. Buttons above
 the search results determine what will be displayed for the current search.
 */
-function watchTvButtons() {
-    $('.js-tv-button').click(event => {
-        event.preventDefault();
-        toggleHighlight($('.js-tv-button'));
-    })
+function watchTvButton() {
     $('.js-results-tv-button').click(event => {
         event.preventDefault();
         toggleHighlight($('.js-results-tv-button'));
@@ -346,11 +324,7 @@ function watchTvNextButton() {
 Toggles between whether or not movies will be displayed at all. Buttons near search bar determine what will be initially displayed when a new search occurs. Buttons above
 the search results determine what will be displayed for the current search.
 */
-function watchMoviesButtons() {
-    $('.js-movies-button').click(event => {
-        event.preventDefault();
-        toggleHighlight($('.js-movies-button'));
-    })
+function watchMoviesButton() {
     $('.js-results-movies-button').click(event => {
         event.preventDefault();
         toggleHighlight($('.js-results-movies-button'));
@@ -360,7 +334,7 @@ function watchMoviesButtons() {
 }
 
 //Changes which movie will be viewed by moving backwards through the movies array.
-function watchMoviePrevButton() {
+function watchMoviesPrevButton() {
     $('.js-movies-search-results').on('click', '.js-movie-prev-button', event => {
         event.preventDefault();
         movieItem = movieItem - 1;
@@ -374,7 +348,7 @@ function watchMoviePrevButton() {
 }
 
 //Changes which movie will be viewed by moving forward through the movies array.
-function watchMovieNextButton() {
+function watchMoviesNextButton() {
     $('.js-movies-search-results').on('click', '.js-movie-next-button', event => {
         event.preventDefault();
         movieItem = movieItem + 1;
@@ -392,10 +366,6 @@ Toggles between whether or not books will be displayed at all. Buttons near sear
 the search results determine what will be displayed for the current search.
 */
 function watchBooksButton() {
-    $('.js-books-button').click(event => {
-        event.preventDefault();
-        toggleHighlight($('.js-books-button'));
-    })
     $('.js-results-books-button').click(event => {
         event.preventDefault();
         toggleHighlight($('.js-results-books-button'));
@@ -405,7 +375,7 @@ function watchBooksButton() {
 }
 
 //Changes which book will be viewed by moving backwards through the books array.
-function watchBookPrevButton() {
+function watchBooksPrevButton() {
     $('.js-books-search-results').on('click', '.js-book-prev-button', event => {
         event.preventDefault();
         bookItem = bookItem - 1;
@@ -419,7 +389,7 @@ function watchBookPrevButton() {
 }
 
 //Changes which book will be viewed by moving forward through the books array.
-function watchBookNextButton() {
+function watchBooksNextButton() {
     $('.js-books-search-results').on('click', '.js-book-next-button', event => {
         event.preventDefault();
         bookItem = bookItem + 1;
@@ -432,27 +402,26 @@ function watchBookNextButton() {
     })
 }
 
-//Waits for use to his submit button, then begins search process
+//Waits for user to hit submit button, then begins search process.
 function watchForm() {
     $('.js-search-form').submit(event => {
       event.preventDefault();
       const mediaSearch = $('.js-media-search').val();
       clearScreen();
-      copyHighlights();
       searchResults(mediaSearch);
     });
 }
 
-//Creates event listeners for buttons
+//Creates event listeners for buttons.
 function initializeApp() {
     watchForm();
     watchBooksButton();
-    watchBookPrevButton();
-    watchBookNextButton();
-    watchMoviesButtons();
-    watchMoviePrevButton();
-    watchMovieNextButton();
-    watchTvButtons();
+    watchBooksPrevButton();
+    watchBooksNextButton();
+    watchMoviesButton();
+    watchMoviesPrevButton();
+    watchMoviesNextButton();
+    watchTvButton();
     watchTvPrevButton();
     watchTvNextButton();
 }

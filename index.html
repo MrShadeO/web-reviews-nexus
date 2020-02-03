@@ -14,14 +14,9 @@
 
         <form class="search-form js-search-form">
             <fieldset>
-                <div class="media-options js-media-options">
-                    <button class="books-button js-books-button">Books</button>
-                    <button class="movies-button js-movies-button">Movies</button>
-                    <button class="tv-button js-tv-button">TV</button>
-                </div>
                 <div class="search-field">
                     <label for="media-search"></label>
-                    <input class="media-search js-media-search" type="text" name="media-search" placeholder="Book, movie, or tv show title" required>
+                    <input class="media-search js-media-search" type="text" name="media-search" placeholder="Title" required>
                     <label for="search-button"></label>
                     <input class="search-button js-search-button" type="submit" name="search-button" value="Search">
                 </div>
@@ -44,10 +39,11 @@
 
     <div class="results js-results hidden">
         <div class="results-media-options js-results-media-options">
-            <button class="results-books-button js-results-books-button">Books</button>
-            <button class="results-movies-button js-results-movies-button">Movies</button>
-            <button class="results-tv-button js-results-tv-button">TV</button>
+            <button class="results-books-button js-results-books-button highlight">Books</button>
+            <button class="results-movies-button js-results-movies-button highlight">Movies</button>
+            <button class="results-tv-button js-results-tv-button highlight">TV</button>
         </div>
+        <h3 class="scores-title">Scores</h3>
         <div class="scores js-scores">
             <p class="book-score js-book-score hidden"></p>
             <p class="movie-score js-movie-score hidden"></p>
