@@ -6,6 +6,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 17px;
+    line-height: 25px;
 }
 
 .hidden {
@@ -26,6 +29,24 @@ h1, h2, h3 {
     padding: 0;
     margin: 0;
     text-align: center;
+}
+
+h1 {
+    font-size: 1.8em;
+    margin-top: 8px;
+}
+
+h2, h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.17em;
+}
+
+.home-link {
+    text-decoration: none;
+    color: black;
 }
 
 .highlight {
@@ -71,11 +92,18 @@ fieldset {
     padding: 0;
 }
 
-.media-options, .search-field, .results-media-options {
+.search-field, .results-media-options {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 0;
+}
+
+.search-field {
+    margin: 10px 0 10px 0;
+}
+
+.results-media-options {
     margin: 0 0 10px 0;
 }
 
@@ -106,6 +134,7 @@ fieldset {
     justify-content: center;
     align-items: center;
     height: 20px;
+    margin-top: 20px;
 }
 
 .left-right-buttons p {
@@ -114,11 +143,6 @@ fieldset {
     align-items: center;
     margin-left: 3%;
     margin-right: 3%;
-}
-
-.homepage-image {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 button {
@@ -137,7 +161,7 @@ input[type=submit] {
 }
 
 .results-books-button, .results-movies-button, .results-tv-button {
-    width: 70px;
+    width: 75px;
 }
 
 .highlight.results-books-button, .book-next-button, .book-prev-button {
@@ -181,7 +205,7 @@ input[type=submit] {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 30px;
     width: 150px;
     height: 180px;
 }

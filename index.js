@@ -16,6 +16,10 @@ let movieList = [];
 let tvItem = 0;
 let tvList = [];
 
+/*
+The following three functions are called when no search results are returned from a fetch request to their associated APIs or if the search 
+results contain nothing.
+*/
 function displayNoMovieResults() {
     if ($('.js-results-movies-button').hasClass('highlight')) {
         $('.js-movies-search-results').removeClass('hidden');
@@ -264,6 +268,20 @@ function searchResults(mediaSearch) {
     console.log(tmdbMovieUrl);
     console.log(tmdbTvUrl);
 
+    //Book search
+    fetch(gbUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => parseBookResults(responseJson))
+    .catch(err => {
+      console.log("Something went wrong.");
+      displayNoBookResults();
+    });
+
     //Movie search
     fetch(tmdbMovieUrl)
     .then(response => {
@@ -290,20 +308,6 @@ function searchResults(mediaSearch) {
     .catch(err => {
       console.log("Something went wrong.");
       displayNoTvResults();
-    });
-
-    //Book search
-    fetch(gbUrl)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error(response.statusText);
-    })
-    .then(responseJson => parseBookResults(responseJson))
-    .catch(err => {
-      console.log("Something went wrong.");
-      displayNoBookResults();
     });
 
 }
