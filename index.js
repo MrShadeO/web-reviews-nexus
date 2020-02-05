@@ -16,6 +16,27 @@ let movieList = [];
 let tvItem = 0;
 let tvList = [];
 
+function displayNoMovieResults() {
+    if ($('.js-results-movies-button').hasClass('highlight')) {
+        $('.js-movies-search-results').removeClass('hidden');
+    }
+    $('.js-movies-search-results').append('<p class="title">No movies found.</p>');
+}
+
+function displayNoTvResults() {
+    if ($('.js-results-tv-button').hasClass('highlight')) {
+        $('.js-tv-search-results').removeClass('hidden');
+    }
+    $('.js-tv-search-results').append('<p class="title">No TV shows found.</p>');
+}
+
+function displayNoBookResults() {
+    if ($('.js-results-books-button').hasClass('highlight')) {
+        $('.js-books-search-results').removeClass('hidden');
+    }
+    $('.js-books-search-results').append('<p class="title">No books found.</p>');
+}
+
 /*
 Takes the TV list and the current position in the books list to display relevant search info. Ensures that info is displayed when user clicks a 
 media button after a search has been performed.
@@ -28,7 +49,7 @@ function displayTvShow() {
     if (tvList[tvItem].score == 0) {
         $('.js-tv-score').append(`<span class="make-bold">TV:</span> N/A`)
     } else {
-        $('.js-tv-score').append(`<span class="make-bold">TV:</span> ${tvList[tvItem].score}/10`)
+        $('.js-tv-score').append(`<span class="make-bold">TV:</span> ${tvList[tvItem].score}`)
     }
     $('.js-tv-search-results').append(
         `<h3>TV Shows</h3>
@@ -37,8 +58,9 @@ function displayTvShow() {
             <p>Item ${tvItem + 1} of ${tvList.length}</p>
             <button class="tv-next-button js-tv-next-button">Next</button>
         </div>
-        <h4>${tvList[tvItem].title}</h4>
-        <p><span class="make-bold">Average Score:</span> ${tvList[tvItem].score}/10</p>
+        <img class="tv-show-poster" src="${tvList[tvItem].image}" alt="Image of tv show poster">
+        <h4 class="title">${tvList[tvItem].title}</h4>
+        <p><span class="make-bold">Average Score:</span> ${tvList[tvItem].score}</p>
         <p><span class="make-bold">Summary:</span> ${tvList[tvItem].summary}</p>`
     )
 }
@@ -55,7 +77,7 @@ function displayMovie() {
     if (movieList[movieItem].score == 0) {
         $('.js-movie-score').append(`<span class="make-bold">Movie:</span> N/A`)
     } else {
-        $('.js-movie-score').append(`<span class="make-bold">Movie:</span> ${movieList[movieItem].score}/10`)
+        $('.js-movie-score').append(`<span class="make-bold">Movie:</span> ${movieList[movieItem].score}`)
     }
     $('.js-movies-search-results').append(
         `<h3>Movies</h3>
@@ -64,8 +86,9 @@ function displayMovie() {
             <p>Item ${movieItem + 1} of ${movieList.length}</p>
             <button class="movie-next-button js-movie-next-button">Next</button>
         </div>
-        <h4>${movieList[movieItem].title}</h4>
-        <p><span class="make-bold">Average Score:</span> ${movieList[movieItem].score}/10</p>
+        <img class="movie-poster" src="${movieList[movieItem].image}" alt="Image of movie poster">
+        <h4 class="title">${movieList[movieItem].title}</h4>
+        <p><span class="make-bold">Average Score:</span> ${movieList[movieItem].score}</p>
         <p><span class="make-bold">Summary:</span> ${movieList[movieItem].summary}</p>`
     )
 }
@@ -82,7 +105,7 @@ function displayBook() {
     if (bookList[bookItem].score == 0) {
         $('.js-book-score').append(`<span class="make-bold">Book:</span> N/A`)
     } else {
-        $('.js-book-score').append(`<span class="make-bold">Book:</span> ${bookList[bookItem].score}/10`)
+        $('.js-book-score').append(`<span class="make-bold">Book:</span> ${bookList[bookItem].score}`)
     }
     $('.js-books-search-results').append(
         `<h3>Books</h3>
@@ -91,8 +114,10 @@ function displayBook() {
             <p>Item ${bookItem + 1} of ${bookList.length}</p>
             <button class="book-next-button js-book-next-button">Next</button>
         </div>
-        <h4>${bookList[bookItem].title}</h4>
-        <p><span class="make-bold">Average Score:</span> ${bookList[bookItem].score}/10</p>
+        <img class="book-cover" src="${bookList[bookItem].image}" alt="Image of book's cover.">
+        <h4 class="title">${bookList[bookItem].title}</h4>
+        <p><span class="make-bold">Authors:</span> ${bookList[bookItem].authors}</p>
+        <p><span class="make-bold">Average Score:</span> ${bookList[bookItem].score}</p>
         <p><span class="make-bold">Summary:</span> ${bookList[bookItem].summary}</p>`
     )
 }
@@ -105,10 +130,27 @@ function parseTvResults(responseData) {
     console.log(responseData);
 
     for (let i=0; i < responseData.results.length; i++) {
-        let tvShow = {
-            title: responseData.results[i].name,
-            score: responseData.results[i].vote_average,
-            summary: responseData.results[i].overview,
+        let tvShow;
+        if (responseData.results[i].poster_path) {
+            tvShow = {
+                title: responseData.results[i].name,
+                score: responseData.results[i].vote_average + "/10",
+                summary: responseData.results[i].overview,
+                image: "http://image.tmdb.org/t/p/w185" + responseData.results[i].poster_path,
+            } 
+        } else {
+            tvShow = {
+                title: responseData.results[i].name,
+                score: responseData.results[i].vote_average + "/10",
+                summary: responseData.results[i].overview,
+                image: "https://lh3.googleusercontent.com/proxy/gjwBaYPv5xPgYTJzyfbSIz4WjHHO35Vg0-15Aj-Cl3H1UaRBJ3qBKibkSNmhOWbHI-beigf0iXpbAE85o6l40YWixXuAJXkAmaNZmoN0caTku0sGhWu22AdIVk8euiyr0rnYi04_", 
+            }
+        }
+        if (tvShow.summary.length == 0) {
+            tvShow.summary = "No synopsis found.";
+        }
+        if (tvShow.score == "0/10") {
+            tvShow.score = "N/A";
         }
         tvList.push(tvShow);
     }
@@ -123,10 +165,27 @@ function parseMovieResults(responseData) {
     console.log(responseData);
 
     for (let i=0; i < responseData.results.length; i++) {
-        let movie = {
-            title: responseData.results[i].title,
-            score: responseData.results[i].vote_average,
-            summary: responseData.results[i].overview,
+        let movie;
+        if (responseData.results[i].poster_path) {
+            movie = {
+                title: responseData.results[i].title,
+                score: responseData.results[i].vote_average + "/10",
+                summary: responseData.results[i].overview,
+                image: "http://image.tmdb.org/t/p/w185" + responseData.results[i].poster_path,
+            }
+        } else {
+            movie = {
+                title: responseData.results[i].title,
+                score: responseData.results[i].vote_average + "/10",
+                summary: responseData.results[i].overview,
+                image: "https://lh3.googleusercontent.com/proxy/gjwBaYPv5xPgYTJzyfbSIz4WjHHO35Vg0-15Aj-Cl3H1UaRBJ3qBKibkSNmhOWbHI-beigf0iXpbAE85o6l40YWixXuAJXkAmaNZmoN0caTku0sGhWu22AdIVk8euiyr0rnYi04_",
+            }
+        }
+        if (movie.summary.length == 0) {
+            movie.summary = "No synopsis found.";
+        }
+        if (movie.score == "0/10") {
+            movie.score = "N/A";
         }
         movieList.push(movie);
     }  
@@ -142,18 +201,29 @@ function parseBookResults(responseData) {
 
     for (let i=0; i < responseData.items.length; i++) {
         let book;
+        let authorList = responseData.items[i].volumeInfo.authors.join(", ");
         if (responseData.items[i].volumeInfo.averageRating) {
             book = {
                 title: responseData.items[i].volumeInfo.title,
-                score: responseData.items[i].volumeInfo.averageRating * 2,
+                score: (responseData.items[i].volumeInfo.averageRating * 2) + "/10",
                 summary: responseData.items[i].volumeInfo.description,
+                image: responseData.items[i].volumeInfo.imageLinks.smallThumbnail,
+                authors: authorList,
             }
         } else {
             book = {
                 title: responseData.items[i].volumeInfo.title,
-                score: 0,
+                score: "N/A",
                 summary: responseData.items[i].volumeInfo.description,
+                image: responseData.items[i].volumeInfo.imageLinks.smallThumbnail,
+                authors: authorList,
             }
+        }
+        if (!responseData.items[i].volumeInfo.imageLinks.smallThumbnail) {
+            book.image = "https://lh3.googleusercontent.com/proxy/gjwBaYPv5xPgYTJzyfbSIz4WjHHO35Vg0-15Aj-Cl3H1UaRBJ3qBKibkSNmhOWbHI-beigf0iXpbAE85o6l40YWixXuAJXkAmaNZmoN0caTku0sGhWu22AdIVk8euiyr0rnYi04_";
+        }
+        if (book.summary.length == 0) {
+            book.summary = "No synopsis found.";
         }
         bookList.push(book);
     }
@@ -205,6 +275,7 @@ function searchResults(mediaSearch) {
     .then(responseJson => parseMovieResults(responseJson))
     .catch(err => {
       console.log("Something went wrong.");
+      displayNoMovieResults();
     });
 
     //TV search
@@ -218,6 +289,7 @@ function searchResults(mediaSearch) {
     .then(responseJson => parseTvResults(responseJson))
     .catch(err => {
       console.log("Something went wrong.");
+      displayNoTvResults();
     });
 
     //Book search
@@ -231,6 +303,7 @@ function searchResults(mediaSearch) {
     .then(responseJson => parseBookResults(responseJson))
     .catch(err => {
       console.log("Something went wrong.");
+      displayNoBookResults();
     });
 
 }

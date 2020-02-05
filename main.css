@@ -158,16 +158,32 @@ input[type=submit] {
     justify-content: center;
 }
 
+.image-links a {
+    margin: 0 10px 0 10px;
+}
+
 .powered-by-img {
     width: 100px;
     height: 100px;
-    margin: 0 10px 0 10px;
 }
 
 .make-bold {
     font-weight: bold;
     padding: 0;
     margin: 0;
+}
+
+.title {
+    text-align: center;
+}
+
+.book-cover, .movie-poster, .tv-show-poster {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 150px;
+    height: 180px;
 }
 
 @media screen and (min-width:375px) {
