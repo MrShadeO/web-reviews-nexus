@@ -206,12 +206,13 @@ function parseBookResults(responseData) {
     for (let i=0; i < responseData.items.length; i++) {
         let book;
         let authorList = responseData.items[i].volumeInfo.authors.join(", ");
+        let securedLink = responseData.items[i].volumeInfo.imageLinks.smallThumbnail.replace("http", "https");
         if (responseData.items[i].volumeInfo.averageRating) {
             book = {
                 title: responseData.items[i].volumeInfo.title,
                 score: (responseData.items[i].volumeInfo.averageRating * 2) + "/10",
                 summary: responseData.items[i].volumeInfo.description,
-                image: responseData.items[i].volumeInfo.imageLinks.smallThumbnail,
+                image: securedLink,
                 authors: authorList,
             }
         } else {
@@ -219,7 +220,7 @@ function parseBookResults(responseData) {
                 title: responseData.items[i].volumeInfo.title,
                 score: "N/A",
                 summary: responseData.items[i].volumeInfo.description,
-                image: responseData.items[i].volumeInfo.imageLinks.smallThumbnail,
+                image: securedLink,
                 authors: authorList,
             }
         }
