@@ -140,7 +140,7 @@ function parseTvResults(responseData) {
                 title: responseData.results[i].name,
                 score: responseData.results[i].vote_average + "/10",
                 summary: responseData.results[i].overview,
-                image: "http://image.tmdb.org/t/p/w185" + responseData.results[i].poster_path,
+                image: "https://image.tmdb.org/t/p/w185" + responseData.results[i].poster_path,
             } 
         } else {
             tvShow = {
@@ -175,7 +175,7 @@ function parseMovieResults(responseData) {
                 title: responseData.results[i].title,
                 score: responseData.results[i].vote_average + "/10",
                 summary: responseData.results[i].overview,
-                image: "http://image.tmdb.org/t/p/w185" + responseData.results[i].poster_path,
+                image: "https://image.tmdb.org/t/p/w185" + responseData.results[i].poster_path,
             }
         } else {
             movie = {
