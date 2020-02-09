@@ -9,12 +9,14 @@ const tmdbTvSearchURL = 'https://api.themoviedb.org/3/search/tv?';
 The following variables are used to store info from a search's results. List arrays hold every item found in a search and the Item variables
 are the current positions in the relevant arrays. 
 */
-let bookItem = 0;
-let bookList = [];
-let movieItem = 0;
-let movieList = [];
-let tvItem = 0;
-let tvList = [];
+const STORE = {
+    bookItem: 0,
+    bookList: [],
+    movieItem: 0,
+    movieList: [],
+    tvItem: 0,
+    tvList: [],
+}
 
 /*
 The following three functions are called when no search results are returned from a fetch request to their associated APIs or if the search 
@@ -50,22 +52,22 @@ function displayTvShow() {
         $('.js-tv-score').removeClass('hidden');
         $('.js-tv-search-results').removeClass('hidden');
     }
-    if (tvList[tvItem].score == 0) {
+    if (STORE.tvList[STORE.tvItem].score == 0) {
         $('.js-tv-score').append(`<span class="make-bold">TV:</span> N/A`)
     } else {
-        $('.js-tv-score').append(`<span class="make-bold">TV:</span> ${tvList[tvItem].score}`)
+        $('.js-tv-score').append(`<span class="make-bold">TV:</span> ${STORE.tvList[STORE.tvItem].score}`)
     }
     $('.js-tv-search-results').append(
         `<h3>TV Shows</h3>
         <div class='left-right-buttons'>
             <button class="tv-prev-button js-tv-prev-button">Prev</button>
-            <p>Item ${tvItem + 1} of ${tvList.length}</p>
+            <p>Item ${STORE.tvItem + 1} of ${STORE.tvList.length}</p>
             <button class="tv-next-button js-tv-next-button">Next</button>
         </div>
-        <img class="tv-show-poster" src="${tvList[tvItem].image}" alt="Image of tv show poster">
-        <h4 class="title">${tvList[tvItem].title}</h4>
-        <p><span class="make-bold">Average Score:</span> ${tvList[tvItem].score}</p>
-        <p><span class="make-bold">Summary:</span> ${tvList[tvItem].summary}</p>`
+        <img class="tv-show-poster" src="${STORE.tvList[STORE.tvItem].image}" alt="Image of tv show poster">
+        <h4 class="title">${STORE.tvList[STORE.tvItem].title}</h4>
+        <p><span class="make-bold">Average Score:</span> ${STORE.tvList[STORE.tvItem].score}</p>
+        <p><span class="make-bold">Summary:</span> ${STORE.tvList[STORE.tvItem].summary}</p>`
     )
 }
 
@@ -78,22 +80,22 @@ function displayMovie() {
         $('.js-movie-score').removeClass('hidden');
         $('.js-movies-search-results').removeClass('hidden');
     }
-    if (movieList[movieItem].score == 0) {
+    if (STORE.movieList[STORE.movieItem].score == 0) {
         $('.js-movie-score').append(`<span class="make-bold">Movie:</span> N/A`)
     } else {
-        $('.js-movie-score').append(`<span class="make-bold">Movie:</span> ${movieList[movieItem].score}`)
+        $('.js-movie-score').append(`<span class="make-bold">Movie:</span> ${STORE.movieList[STORE.movieItem].score}`)
     }
     $('.js-movies-search-results').append(
         `<h3>Movies</h3>
         <div class='left-right-buttons'>
             <button class="movie-prev-button js-movie-prev-button">Prev</button>
-            <p>Item ${movieItem + 1} of ${movieList.length}</p>
+            <p>Item ${STORE.movieItem + 1} of ${STORE.movieList.length}</p>
             <button class="movie-next-button js-movie-next-button">Next</button>
         </div>
-        <img class="movie-poster" src="${movieList[movieItem].image}" alt="Image of movie poster">
-        <h4 class="title">${movieList[movieItem].title}</h4>
-        <p><span class="make-bold">Average Score:</span> ${movieList[movieItem].score}</p>
-        <p><span class="make-bold">Summary:</span> ${movieList[movieItem].summary}</p>`
+        <img class="movie-poster" src="${STORE.movieList[STORE.movieItem].image}" alt="Image of movie poster">
+        <h4 class="title">${STORE.movieList[STORE.movieItem].title}</h4>
+        <p><span class="make-bold">Average Score:</span> ${STORE.movieList[STORE.movieItem].score}</p>
+        <p><span class="make-bold">Summary:</span> ${STORE.movieList[STORE.movieItem].summary}</p>`
     )
 }
 
@@ -106,23 +108,23 @@ function displayBook() {
         $('.js-book-score').removeClass('hidden');
         $('.js-books-search-results').removeClass('hidden');
     }
-    if (bookList[bookItem].score == 0) {
+    if (STORE.bookList[STORE.bookItem].score == 0) {
         $('.js-book-score').append(`<span class="make-bold">Book:</span> N/A`)
     } else {
-        $('.js-book-score').append(`<span class="make-bold">Book:</span> ${bookList[bookItem].score}`)
+        $('.js-book-score').append(`<span class="make-bold">Book:</span> ${STORE.bookList[STORE.bookItem].score}`)
     }
     $('.js-books-search-results').append(
         `<h3>Books</h3>
         <div class='left-right-buttons'>
             <button class="book-prev-button js-book-prev-button">Prev</button>
-            <p>Item ${bookItem + 1} of ${bookList.length}</p>
+            <p>Item ${STORE.bookItem + 1} of ${STORE.bookList.length}</p>
             <button class="book-next-button js-book-next-button">Next</button>
         </div>
-        <img class="book-cover" src="${bookList[bookItem].image}" alt="Image of book's cover.">
-        <h4 class="title">${bookList[bookItem].title}</h4>
-        <p><span class="make-bold">Authors:</span> ${bookList[bookItem].authors}</p>
-        <p><span class="make-bold">Average Score:</span> ${bookList[bookItem].score}</p>
-        <p><span class="make-bold">Summary:</span> ${bookList[bookItem].summary}</p>`
+        <img class="book-cover" src="${STORE.bookList[STORE.bookItem].image}" alt="Image of book's cover.">
+        <h4 class="title">${STORE.bookList[STORE.bookItem].title}</h4>
+        <p><span class="make-bold">Authors:</span> ${STORE.bookList[STORE.bookItem].authors}</p>
+        <p><span class="make-bold">Average Score:</span> ${STORE.bookList[STORE.bookItem].score}</p>
+        <p><span class="make-bold">Summary:</span> ${STORE.bookList[STORE.bookItem].summary}</p>`
     )
 }
 
@@ -131,8 +133,6 @@ Takes the response data from the TMDB TV show database and parses through to fin
 all subsequent functions.
 */
 function parseTvResults(responseData) {
-    console.log(responseData);
-
     for (let i=0; i < responseData.results.length; i++) {
         let tvShow;
         if (responseData.results[i].poster_path) {
@@ -156,7 +156,7 @@ function parseTvResults(responseData) {
         if (tvShow.score == "0/10") {
             tvShow.score = "N/A";
         }
-        tvList.push(tvShow);
+        STORE.tvList.push(tvShow);
     }
     displayTvShow();
 }
@@ -166,8 +166,6 @@ Takes the response data from the TMDB movie database and parses through to find 
 all subsequent functions.
 */
 function parseMovieResults(responseData) {
-    console.log(responseData);
-
     for (let i=0; i < responseData.results.length; i++) {
         let movie;
         if (responseData.results[i].poster_path) {
@@ -191,7 +189,7 @@ function parseMovieResults(responseData) {
         if (movie.score == "0/10") {
             movie.score = "N/A";
         }
-        movieList.push(movie);
+        STORE.movieList.push(movie);
     }  
     displayMovie();
 }
@@ -201,8 +199,6 @@ Takes the response data from the Google Books database and parses through to fin
 all subsequent functions.
 */
 function parseBookResults(responseData) {
-    console.log(responseData);
-
     for (let i=0; i < responseData.items.length; i++) {
         let book;
         let authorList = responseData.items[i].volumeInfo.authors.join(", ");
@@ -230,7 +226,7 @@ function parseBookResults(responseData) {
         if (book.summary.length == 0) {
             book.summary = "No synopsis found.";
         }
-        bookList.push(book);
+        STORE.bookList.push(book);
     }
     displayBook();
 }
@@ -265,10 +261,6 @@ function searchResults(mediaSearch) {
     const tmdbTvQueryString = formatQueryParams(tmdbTvParams);
     const tmdbTvUrl = tmdbTvSearchURL + tmdbTvQueryString;
 
-    console.log(gbUrl);
-    console.log(tmdbMovieUrl);
-    console.log(tmdbTvUrl);
-
     //Book search
     fetch(gbUrl)
     .then(response => {
@@ -279,7 +271,6 @@ function searchResults(mediaSearch) {
     })
     .then(responseJson => parseBookResults(responseJson))
     .catch(err => {
-      console.log("Something went wrong.");
       displayNoBookResults();
     });
 
@@ -293,7 +284,6 @@ function searchResults(mediaSearch) {
     })
     .then(responseJson => parseMovieResults(responseJson))
     .catch(err => {
-      console.log("Something went wrong.");
       displayNoMovieResults();
     });
 
@@ -307,7 +297,6 @@ function searchResults(mediaSearch) {
     })
     .then(responseJson => parseTvResults(responseJson))
     .catch(err => {
-      console.log("Something went wrong.");
       displayNoTvResults();
     });
 
@@ -350,12 +339,12 @@ function clearScreen() {
     $('.js-results-movies-button').addClass('highlight');
     $('.js-results-books-button').addClass('highlight');
 
-    bookItem = 0;
-    bookList = [];
-    movieItem = 0;
-    movieList = [];
-    tvItem = 0;
-    tvList = [];
+    STORE.bookItem = 0;
+    STORE.bookList = [];
+    STORE.movieItem = 0;
+    STORE.movieList = [];
+    STORE.tvItem = 0;
+    STORE.tvList = [];
 }
 
 /*
@@ -375,9 +364,9 @@ function watchTvButton() {
 function watchTvPrevButton() {
     $('.js-tv-search-results').on('click', '.js-tv-prev-button', event => {
         event.preventDefault();
-        tvItem = tvItem - 1;
-        if (tvItem < 0) {
-            tvItem = tvList.length - 1;
+        STORE.tvItem = STORE.tvItem - 1;
+        if (STORE.tvItem < 0) {
+            STORE.tvItem = STORE.tvList.length - 1;
         }
         $('.js-tv-search-results').empty();
         $('.js-tv-score').empty();
@@ -389,9 +378,9 @@ function watchTvPrevButton() {
 function watchTvNextButton() {
     $('.js-tv-search-results').on('click', '.js-tv-next-button', event => {
         event.preventDefault();
-        tvItem = tvItem + 1;
-        if (tvItem > tvList.length - 1) {
-            tvItem = 0;
+        STORE.tvItem = STORE.tvItem + 1;
+        if (STORE.tvItem > STORE.tvList.length - 1) {
+            STORE.tvItem = 0;
         }
         $('.js-tv-search-results').empty();
         $('.js-tv-score').empty();
@@ -416,9 +405,9 @@ function watchMoviesButton() {
 function watchMoviesPrevButton() {
     $('.js-movies-search-results').on('click', '.js-movie-prev-button', event => {
         event.preventDefault();
-        movieItem = movieItem - 1;
-        if (movieItem < 0) {
-            movieItem = movieList.length - 1;
+        STORE.movieItem = STORE.movieItem - 1;
+        if (STORE.movieItem < 0) {
+            STORE.movieItem = STORE.movieList.length - 1;
         }
         $('.js-movies-search-results').empty();
         $('.js-movie-score').empty();
@@ -430,9 +419,9 @@ function watchMoviesPrevButton() {
 function watchMoviesNextButton() {
     $('.js-movies-search-results').on('click', '.js-movie-next-button', event => {
         event.preventDefault();
-        movieItem = movieItem + 1;
-        if (movieItem > movieList.length - 1) {
-            movieItem = 0;
+        STORE.movieItem = STORE.movieItem + 1;
+        if (STORE.movieItem > STORE.movieList.length - 1) {
+            STORE.movieItem = 0;
         }
         $('.js-movies-search-results').empty();
         $('.js-movie-score').empty();
@@ -457,9 +446,9 @@ function watchBooksButton() {
 function watchBooksPrevButton() {
     $('.js-books-search-results').on('click', '.js-book-prev-button', event => {
         event.preventDefault();
-        bookItem = bookItem - 1;
-        if (bookItem < 0) {
-            bookItem = bookList.length - 1;
+        STORE.bookItem = STORE.bookItem - 1;
+        if (STORE.bookItem < 0) {
+            STORE.bookItem = STORE.bookList.length - 1;
         }
         $('.js-books-search-results').empty();
         $('.js-book-score').empty();
@@ -471,9 +460,9 @@ function watchBooksPrevButton() {
 function watchBooksNextButton() {
     $('.js-books-search-results').on('click', '.js-book-next-button', event => {
         event.preventDefault();
-        bookItem = bookItem + 1;
-        if (bookItem > bookList.length - 1) {
-            bookItem = 0;
+        STORE.bookItem = STORE.bookItem + 1;
+        if (STORE.bookItem > STORE.bookList.length - 1) {
+            STORE.bookItem = 0;
         }
         $('.js-books-search-results').empty();
         $('.js-book-score').empty();
